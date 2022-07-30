@@ -129,3 +129,8 @@ dmypy.json
 .pyre/
 .markdownlint.yaml
 *.trunk/*
+*old_install/*
+*old_modules/*
+.DS_Store
+oop-test.py
+old_main.py
