@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 """
 
 
-class GetKeys(object):
+class GetEnvKeys(object):
     def __init__(self):
         load_dotenv()
         env_path = Path(".") / ".env"
@@ -19,23 +19,16 @@ class GetKeys(object):
         self.tuya_apisecret = os.getenv("TUYA_API_SECRET")
         self.tuya_region = os.getenv("TUYA_REGION")
         self.tuya_device_id = os.getenv("TUYA_DEVICE_ID")
+        self.telegram_chat_id = os.getenv("CHAT_ID")
+        self.telegram_api = os.getenv("TELEGRAM_API")
+        self.pause = int(os.getenv("PAUSE"))
+        print(f"В настройках установлена пауза: {self.pause} секунд\n")
 
 
 """"
-telegram_chat_id = os.getenv("CHAT_ID")
-print(telegram_chat_id)
-
-
-
-print(tuya_region)
-
-telegram_api = os.getenv("TELEGRAM_API")
-
-pause = int(os.getenv("PAUSE"))
 heroku_host = os.getenv("HEROKU_HOST")
 heroku_db = os.getenv("HEROKU_DB")
 heroku_user = os.getenv("HEROKU_USER")
 heroku_password = os.getenv("HEROKU_PASSWORD")
 heroku_port = os.getenv("HEROKU_PORT")
-print(f"В настройках установлена пауза: {pause} секунд\n")
 """
