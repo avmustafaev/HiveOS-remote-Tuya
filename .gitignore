@@ -11,3 +11,4 @@ old_install/*
 old_main.py
 db/data.db
 install/*
+async_test.py

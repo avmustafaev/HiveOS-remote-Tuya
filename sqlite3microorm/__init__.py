@@ -38,9 +38,7 @@ class MyMicroORM(sqlite3.Connection):
             qmarks = self.get_question_marks(values[0])
         else:
             qmarks = self.get_question_marks(values)
-        query = (
-            f"INSERT OR IGNORE INTO {table} VALUES ({qmarks})"
-        )
+        query = f"INSERT OR IGNORE INTO {table} VALUES ({qmarks})"
         self.MainQuery(query, values, many)
 
     def upd(self, table, values, filters=None):
