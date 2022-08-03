@@ -10,5 +10,6 @@ old_install/*
 .isort.cfg
 old_main.py
 db/data.db
-install/*
 async_test.py
+install/update_smart_sockets.py
+install/asynctelega.py
