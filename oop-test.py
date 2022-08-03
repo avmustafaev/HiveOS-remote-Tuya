@@ -16,6 +16,8 @@ sockets = ConnectTuya(
 
 farms_list = hiveos.getfarms()
 
+sockets.getmySockets()
+
 if farms_list is None:
     print("🚫 Не могу установить соединение с сервером HiveOS")
     telegram.send("🚫 Не могу установить соединение с сервером HiveOS")

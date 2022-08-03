@@ -3,8 +3,8 @@ import tinytuya
 
 class ConnectTuya(tinytuya.Cloud):
     def getmySockets(self):
-        mySockets = self.getdevices()
-        print(mySockets)
+        # print(mySockets)
+        return self.getdevices()
 
 
 """
