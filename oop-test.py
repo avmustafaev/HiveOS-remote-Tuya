@@ -1,13 +1,23 @@
 import os
 
-from src import envkeys, hiveosapi, sqlite3crud, telegramka, tuya_api
+from src.envkeys import GetEnvKeys
+from src.hiveosapi import ConnectHiveOS
+from src.sqlite3crud import ManageDB
+from src.telegramka import ConnectTelegram
+from src.tuya_api import ConnectTuya
 
-keys = envkeys.GetEnvKeys()
-hiveos = hiveosapi.CloudApi(keys.hiveos_apikey)
-sender = telegramka.Telegramka(keys.telegram_api, keys.telegram_chat_id)
-mySockets = tuya_api.Sockets(
+keys = GetEnvKeys()
+hiveos = ConnectHiveOS(keys.hiveos_apikey)
+telegram = ConnectTelegram(keys.telegram_api, keys.telegram_chat_id)
+db = ManageDB(os.path.join("db", "data.db"))
+sockets = ConnectTuya(
     keys.tuya_region, keys.tuya_apikey, keys.tuya_apisecret, keys.tuya_device_id
 )
-db = sqlite3crud.ManageDB(os.path.join("db", "data.db"))
 
-db.add("farms_id", hiveos.getfarms(), many=True)
+farms_list = hiveos.getfarms()
+
+if farms_list is None:
+    print("🚫 Не могу установить соединение с сервером HiveOS")
+    telegram.send('🚫 Не могу установить соединение с сервером HiveOS')
+else:
+    db.add("farms_id", farms_list, many=True)

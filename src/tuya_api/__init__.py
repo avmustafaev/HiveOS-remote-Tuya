@@ -1,3 +1,3 @@
-from .tuya_api import CloudApi
+from .tuya_api import ConnectTuya
 
-__all__ = ["CloudApi"]
+__all__ = ["ConnectTuya"]

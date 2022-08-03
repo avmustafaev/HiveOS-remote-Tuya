@@ -1,3 +1,3 @@
-from .hiveosapi import CloudApi
+from .hiveosapi import ConnectHiveOS
 
-__all__ = ["CloudApi"]
+__all__ = ["ConnectHiveOS"]

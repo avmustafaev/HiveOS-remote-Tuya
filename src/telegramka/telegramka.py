@@ -1,7 +1,7 @@
 import requests
 
 
-class Telegramka(object):
+class ConnectTelegram(object):
     def __init__(self, apikey, chatid):
         self.apikey = apikey
         self.chatid = chatid

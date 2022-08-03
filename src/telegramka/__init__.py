@@ -1,3 +1,3 @@
-from .telegramka import Telegramka
+from .telegramka import ConnectTelegram
 
-__all__ = ["Telegramka"]
+__all__ = ["ConnectTelegram"]

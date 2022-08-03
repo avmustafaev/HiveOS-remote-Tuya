@@ -1,7 +1,7 @@
 import tinytuya
 
 
-class Sockets(tinytuya.Cloud):
+class ConnectTuya(tinytuya.Cloud):
     def getmySockets(self):
         mySockets = self.getdevices()
         print(mySockets)

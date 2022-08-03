@@ -1,7 +1,7 @@
 import requests
 
 
-class CloudApi:
+class ConnectHiveOS:
     def __init__(self, apikey=None):
         if apikey is None:
             raise ValueError("apikey is required")
@@ -13,6 +13,8 @@ class CloudApi:
     def getfarms(self):
         responce_list = []
         farms_json = self.get_farms_json()
+        if farms_json is None:
+            return farms_json
         for fa in farms_json:
             farm_name = fa["name"]
             farm_id = fa["id"]
@@ -36,20 +38,24 @@ class CloudApi:
             "Content-Type": "application/json",
             "Authorization": f"Bearer {self.apikey}",
         }
+
         url_full = f"{url}/{request_part}" if request_part != "" else url
-        if jsoned:
-            return requests.get(url_full, headers=headers).json()
-        else:
-            return requests.get(url_full, headers=headers).ok
+        try:
+            resp = requests.get(url_full, headers=headers)
+        except requests.exceptions.ConnectionError:
+            return None
+        return resp.json() if jsoned else resp.ok
 
     def patch_api(self):
         pass
 
     def get_farms_json(self):
-        return self.get_api("/account")["farms"]
+        resp = self.get_api("/account")
+        return resp if resp is None else resp["farms"]
 
     def get_rigs_json(self, farms_id):
-        return self.get_api(f"/farms/{farms_id}/workers/preview")["data"]
+        resp = self.get_api(f"/farms/{farms_id}/workers/preview")
+        return resp if resp is None else resp["data"]
 
     def check_connect(self):
         return self.get_api("/account/meta", jsoned=False)
