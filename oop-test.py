@@ -1,10 +1,6 @@
 import os
 
-import envkeys
-import hiveosapi
-import sqlite3crud
-import telegramka
-import tuya_api
+from src import envkeys, hiveosapi, sqlite3crud, telegramka, tuya_api
 
 keys = envkeys.GetEnvKeys()
 hiveos = hiveosapi.CloudApi(keys.hiveos_apikey)

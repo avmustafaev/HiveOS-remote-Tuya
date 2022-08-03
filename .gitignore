@@ -13,3 +13,4 @@ db/data.db
 async_test.py
 install/update_smart_sockets.py
 install/asynctelega.py
+*__pycache__*

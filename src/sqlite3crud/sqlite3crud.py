@@ -26,7 +26,9 @@ class ManageDB(sqlite3.Connection):
 
     def db_not_exists(self):
         """Проверяет, инициализирована ли БД, если нет — инициализирует"""
-        self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='farms_id'")
+        self.cursor.execute(
+            "SELECT name FROM sqlite_master WHERE type='table' AND name='farms_id'"
+        )
 
         return not self.cursor.fetchall()
 
