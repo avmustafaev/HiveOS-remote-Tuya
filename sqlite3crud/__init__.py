@@ -2,7 +2,7 @@ import os
 import sqlite3
 
 
-class MyMicroORM(sqlite3.Connection):
+class ManageDB(sqlite3.Connection):
     def __init__(self, db_path):
         self.connect = sqlite3.connect(db_path)
         self.cursor = self.connect.cursor()
@@ -26,12 +26,9 @@ class MyMicroORM(sqlite3.Connection):
 
     def db_not_exists(self):
         """Проверяет, инициализирована ли БД, если нет — инициализирует"""
-        self.cursor.execute(
-            "SELECT name FROM sqlite_master WHERE type='table' AND name='farms_id'"
-        )
-        if self.cursor.fetchall():
-            return False
-        return True
+        self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='farms_id'")
+
+        return not self.cursor.fetchall()
 
     def add(self, table, values, many=False):
         if many:

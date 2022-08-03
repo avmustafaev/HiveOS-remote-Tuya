@@ -2,7 +2,7 @@ import os
 
 import envkeys
 import hiveosapi
-import sqlite3microorm
+import sqlite3crud
 import telegramka
 import tuya_api
 
@@ -12,6 +12,6 @@ sender = telegramka.Telegramka(keys.telegram_api, keys.telegram_chat_id)
 mySockets = tuya_api.Sockets(
     keys.tuya_region, keys.tuya_apikey, keys.tuya_apisecret, keys.tuya_device_id
 )
-db = sqlite3microorm.MyMicroORM(os.path.join("db", "data.db"))
+db = sqlite3crud.ManageDB(os.path.join("db", "data.db"))
 
 db.add("farms_id", hiveos.getfarms(), many=True)
