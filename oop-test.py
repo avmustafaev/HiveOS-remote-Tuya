@@ -18,6 +18,6 @@ farms_list = hiveos.getfarms()
 
 if farms_list is None:
     print("🚫 Не могу установить соединение с сервером HiveOS")
-    telegram.send('🚫 Не могу установить соединение с сервером HiveOS')
+    telegram.send("🚫 Не могу установить соединение с сервером HiveOS")
 else:
     db.add("farms_id", farms_list, many=True)
